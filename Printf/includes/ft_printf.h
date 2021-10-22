@@ -4,8 +4,8 @@
 #include <stddef.h>
 #include <unistd.h>
 
-# define xbase "0123456789abcdef"
-# define Xbase "0123456789ABCDEF"
+# define HEXAMIN "0123456789abcdef"
+# define HEXAMAX "0123456789ABCDEF"
 
 int		      ft_printf(const char *input, ...);
 static int	ft_spec(va_list ap, char c, int count);
