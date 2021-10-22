@@ -8,5 +8,5 @@
 	holder[fd] = ft_update_holder(holder[fd]);
   
   Para presentar el bonus se harán copias de los archivos get_next_line.c, get_next_line_utils.c y get_next_line.h renombrandolos a
-  get_next_line_bonus.c, get_next_line_utils_bonus.c y get_next_line_bonus.h y reescribiendo las dependencias (includes) además de la 
+  get_next_line_bonus.c, get_next_line_utils_bonus.c y get_next_line_bonus.h y reescribiendo las dependencias de Header(includes) además de la 
   modificación arriba descrita en el get_next_line_bonus.c.
