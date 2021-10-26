@@ -1,6 +1,6 @@
 #include "../includes/ft_printf.h"
 
-int ft_printhex(int num, char *c)
+int ft_puthex(int num, char *c)
 {
   int count;
 
