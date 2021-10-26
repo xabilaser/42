@@ -1,3 +1,8 @@
+// Variables para la ubicación de los archivos
+
+S = srcs/
+I = includes/
+
 // Variable para el nombre de archivo de salida (NAME), para almacenar los nombres de los archivos .c(SRCS) y para la creación de los .o (OBJS)
 
 NAME = libftprintf.a
