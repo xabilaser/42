@@ -11,5 +11,6 @@ int		      ft_printf(const char *input, ...);
 static int	ft_spec(va_list ap, char c, int count);
 int         ft_putlchar(char c);
 int         *ft_putstr(char *str);
+int         ft_puthex(int num, char *c);
 
 #endif
