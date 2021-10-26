@@ -8,11 +8,11 @@ I = includes/
 NAME = libftprintf.a
 
 SRCS = $Sft_printf.c\
-       $Sft_putlchar.c\
-       $Sft_putlhex.c\
-       $Sft_putlnbr.c\
-       $Sft_putlstr.c\
-       $Sft_putlunbr.c\
+       $Sft_putchar.c\
+       $Sft_puthex.c\
+       $Sft_putnbr.c\
+       $Sft_putstr.c\
+       $Sft_putunbr.c\
        $Sft_strlen.c\
        
 OBJS = $(SRCS:$S%=$O%.o)
