@@ -10,8 +10,10 @@ int ft_putnbr(int n)
   if (n < 0)
   {
     n = n * -1;
-    len = ft_putchar('-');
+    count = ft_putchar('-');
   }
+  if (n >= 0 && n <= 9)
+	  count = count + ft_putchar(n);
   if (n > 9)
   {
     count = count + ft_putnbr(n / 10);
