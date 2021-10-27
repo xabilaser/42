@@ -19,7 +19,7 @@ static int	ft_pdefine(va_list ap, int count, char c)
 	if (c == 's')
 		count += ft_putstr(va_arg(ap, char *));
 	if (c == 'p')
-		count += ft_putstr("0x") + ft_puthex(va_arg(ap, size_t), c);
+		count += ft_putstr("0x") + ft_puthex(va_arg(ap, unsigned int), c);
 	if (c == 'd' || c == 'i')
 		count += ft_putnbr(va_arg(ap, int));
 	if (c == 'u')
