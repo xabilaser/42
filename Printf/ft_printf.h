@@ -6,7 +6,7 @@
 /*   By: xlasa-ol <xlasa-ol@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 18:47:55 by xlasa-ol          #+#    #+#             */
-/*   Updated: 2021/11/02 14:46:13 by xlasa-ol         ###   ########.fr       */
+/*   Updated: 2021/11/09 12:30:15 by xlasa-ol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ int	ft_putdigit(int n);
 int	ft_putunbr(int n);
 int	ft_puthex(size_t num, char c);
 int	ft_putnbr(int n);
+int	ft_itoa(int n, char *base);
 
 #endif
