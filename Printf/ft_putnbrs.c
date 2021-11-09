@@ -20,7 +20,7 @@ int	ft_putunbr(int n)
 	if (n > 9)
 		count += ft_putnbr((n / 10) + 48);
 	else
-		count += ft_putdigit((n / 10) + 48);
+		count += ft_putdigit((n % 10) + 48);
 	return (count);
 }
 
