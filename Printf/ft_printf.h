@@ -6,7 +6,7 @@
 /*   By: xlasa-ol <xlasa-ol@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 18:47:55 by xlasa-ol          #+#    #+#             */
-/*   Updated: 2021/11/09 12:30:15 by xlasa-ol         ###   ########.fr       */
+/*   Updated: 2021/11/10 12:53:17 by xlasa-ol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int	ft_define(const char *input, int i, va_list ap);
 int	ft_putchar(char c);
 int	ft_putstr(char *str);
 int	ft_putdigit(int n);
-int	ft_putunbr(int n);
+int	ft_putunbr(unsigned int n);
 int	ft_puthex(size_t num, char c);
 int	ft_putnbr(int n);
-int	ft_itoa(int n, char *base);
+int	ft_itoa(size_t n, char *base);
 
 #endif

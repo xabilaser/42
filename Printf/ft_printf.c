@@ -6,7 +6,7 @@
 /*   By: xlasa-ol <xlasa-ol@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 11:47:11 by xlasa-ol          #+#    #+#             */
-/*   Updated: 2021/11/09 12:56:00 by xlasa-ol         ###   ########.fr       */
+/*   Updated: 2021/11/10 11:42:47 by xlasa-ol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,20 @@ int	ft_define(const char *input, int i, va_list ap)
 	int	count;
 
 	count = 0;
-	if (input[i + 1] == 'c')
+	i += 1;
+	if (input[i] == 'c')
 		count = ft_putchar(va_arg(ap, int));
-	if (input[i + 1] == 's')
+	if (input[i] == 's')
 		count = ft_putstr(va_arg(ap, char *));
-	if (input[i + 1] == 'p')
-		count = ft_putstr("0x") + ft_puthex(va_arg(ap, size_t), input[i + 1]);
-	if (input[i + 1] == 'd' || input[i + 1] == 'i')
+	if (input[i] == 'p')
+		count = ft_putstr("0x") + ft_puthex(va_arg(ap, size_t), input[i]);
+	if (input[i] == 'd' || input[i] == 'i')
 		count = ft_putnbr(va_arg(ap, int));
-	if (input[i + 1] == 'u')
+	if (input[i] == 'u')
 		count = ft_putunbr(va_arg(ap, unsigned int));
-	if (input[i + 1] == 'x' || input[i + 1] == 'X')
-		count = ft_puthex(va_arg(ap, size_t), input[i + 1]);
-	if (input[i + 1] == '%')
+	if (input[i] == 'x' || input[i] == 'X')
+		count = ft_puthex(va_arg(ap, size_t), input[i]);
+	if (input[i] == '%')
 	{
 		count = 1;
 		write(1, "%", 1);

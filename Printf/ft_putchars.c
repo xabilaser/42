@@ -6,7 +6,7 @@
 /*   By: xlasa-ol <xlasa-ol@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 14:17:45 by xlasa-ol          #+#    #+#             */
-/*   Updated: 2021/11/02 14:44:53 by xlasa-ol         ###   ########.fr       */
+/*   Updated: 2021/11/09 12:16:16 by xlasa-ol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 int	ft_putchar(char c)
 {
-	write(1, &c, 1);
-	return (1);
+	return (write(1, &c, 1));
 }
 
 int	ft_putstr(char *str)
