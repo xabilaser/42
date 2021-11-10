@@ -61,15 +61,15 @@ int	ft_itoa(size_t n, char *base)
 	return (count);
 }
 
-int	ft_puthex(size_t num, char c)
+int	ft_puthex(unsigned int num, char c)
 {
-	size_t	count;
+	int	count;
 
 	count = 0;
 	if (num == 0)
 		return (ft_putchar('0'));
-	if (num < -2147483648 || num > 2147483647)
-		return (-1);
+	/*if (num < -2147483648 || num > 2147483647)
+		return (-1);*/
 	if (num < 0)
 	{
 		num *= -1;
