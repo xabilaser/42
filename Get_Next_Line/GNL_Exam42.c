@@ -21,7 +21,7 @@ int ft_charcheck(char *str)
 }
 
 /* This second function is for join last buffered chars whit all.
-We will use this function in the main bucle for get the last line 
+We will use this function in the main loop for get the last line 
 when ft_charcheck returns true */
 
 char *ft_joiner(char *line, char c)
