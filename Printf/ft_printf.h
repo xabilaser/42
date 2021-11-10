@@ -26,7 +26,7 @@ int	ft_putchar(char c);
 int	ft_putstr(char *str);
 int	ft_putdigit(int n);
 int	ft_putunbr(unsigned int n);
-int	ft_puthex(size_t num, char c);
+int	ft_puthex(unsigned int num, char c);
 int	ft_putnbr(int n);
 int	ft_itoa(size_t n, char *base);
 
