@@ -45,19 +45,17 @@ int	ft_itoa(size_t n, char *base)
 {
 	size_t	i;
 	int	count;
-	int	nbr;
 
 	i = 0;
 	count = 0;
-	//nbr = (long)n;
 	while (base[i] != '\0')
 		i++;
-	if (nbr / i != 0)
-		ft_itoa(nbr / i, base);
-	ft_putchar(base[nbr % i]);
-	while (nbr != 0)
+	if (n / i != 0)
+		ft_itoa(n / i, base);
+	ft_putchar(base[n % i]);
+	while (n != 0)
 	{
-		nbr = nbr / i;
+		n = n / i;
 		count++;
 	}
 	return (count);
