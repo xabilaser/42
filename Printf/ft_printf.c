@@ -23,13 +23,13 @@ int	ft_define(const char *input, int i, va_list ap)
 	if (input[i] == 's')
 		count = ft_putstr(va_arg(ap, char *));
 	if (input[i] == 'p')
-		count = ft_putstr("0x") + ft_puthex(va_arg(ap, size_t), input[i]);
+		count = ft_putstr("0x") + ft_puthex(va_arg(ap, unsigned int), input[i]);
 	if (input[i] == 'd' || input[i] == 'i')
 		count = ft_putnbr(va_arg(ap, int));
 	if (input[i] == 'u')
 		count = ft_putunbr(va_arg(ap, unsigned int));
 	if (input[i] == 'x' || input[i] == 'X')
-		count = ft_puthex(va_arg(ap, size_t), input[i]);
+		count = ft_puthex(va_arg(ap, unsigned int), input[i]);
 	if (input[i] == '%')
 	{
 		count = 1;
