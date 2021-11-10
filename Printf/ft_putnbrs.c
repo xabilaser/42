@@ -45,11 +45,11 @@ int	ft_itoa(size_t n, char *base)
 {
 	size_t	i;
 	int	count;
-	long	nbr;
+	int	nbr;
 
 	i = 0;
 	count = 0;
-	nbr = (long)n;
+	//nbr = (long)n;
 	while (base[i] != '\0')
 		i++;
 	if (nbr / i != 0)
@@ -70,6 +70,8 @@ int	ft_puthex(size_t num, char c)
 	count = 0;
 	if (num == 0)
 		return (ft_putchar('0'));
+	if (num < -2147483648 || num > 2147483647)
+		return (-1);
 	if (num < 0)
 	{
 		num *= -1;
