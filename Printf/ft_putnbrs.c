@@ -69,12 +69,12 @@ int	ft_puthex(unsigned int num, char c)
 	if (num == 0)
 		return (ft_putchar('0'));
 	/*if (num < -2147483648 || num > 2147483647)
-		return (-1);*/
+		return (-1);
 	if (num < 0)
 	{
 		num *= -1;
 		count += ft_putchar('-');
-	}
+	}*/
 	if (c == 'x' || c == 'p')
 		return (ft_itoa(num, HEXMIN));
 	if (c == 'X')
