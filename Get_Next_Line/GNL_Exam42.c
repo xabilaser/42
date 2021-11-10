@@ -59,7 +59,7 @@ char *get_next_line(int fd)
 	if (!line)
 		return (NULL);
 	line[0] = '\0';
-	fbytes = 1; //Start var with any value > 0 for start into the next loop
+	fbytes = 1; //Start var with any value > 0 for introduce into the next loop.
 	while (!(ft_charcheck(line)) && fbytes != 0)
 	{
 		fbytes = read(fd, &buffer, 1); 
