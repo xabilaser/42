@@ -64,7 +64,7 @@ char *get_next_line(int fd)
 	{
 		fbytes = read(fd, &buffer, 1); 
     /*the one and only read function must be into the loop and BUFFER_SIZE = 1. 
-    It is not mandatory to work with any other B_S, so this one simplify work.*/
+    It is not mandatory to work with any other B_S, so this one simplifies work.*/
 		if (fbytes == 0) //Checking that any byte has been readed
 		{
 			if (line[0] == '\0')// If last buffer returned this, there is no line to return and function ends.
