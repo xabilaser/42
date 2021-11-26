@@ -27,3 +27,5 @@ usleep    int usleep(useconds_t usec);               unistd.h    The usleep() fu
 exit      noreturn void exit(int status);            unistd.h    The exit() function causes normal process termination and the
                                                                  least significant byte of status (i.e., status & 0xFF) is
                                                                  returned to the parent 
+STDOUT_FILENO
+STDIN_FILENO
