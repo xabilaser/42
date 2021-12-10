@@ -10,4 +10,5 @@
 <br>
 <b>Level 02</b>
   <ul>Exam Rank 02</ul>
+  <ul>Mini Talk</ul>
 <br>
