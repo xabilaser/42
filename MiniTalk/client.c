@@ -13,12 +13,12 @@ static int	send_ascii(pid_t pid, char c)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		usleep(1000);
+		usleep(100);
 	}
 	return (0);
 }
 
-static int	send_message(pid_t pid_server, char *str)
+static int	send_mess(pid_t pid_server, char *str)
 {
 	int i;
 
@@ -33,26 +33,26 @@ static int	send_message(pid_t pid_server, char *str)
 	while (i < 7)
 	{
 		kill(pid_server, SIGUSR1);
-		usleep(1000);
+		usleep(100);
 		i++;
 	}
 	return (0);
 }
 
-int			main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	int pid_server;
+	int pid_serv;
 
 	if (argc < 3)
 	{
 		write(2, "usage: ./client [pid server] [message]\n", 39);
 		return (1);
 	}
-	if ((pid_server = ft_atoi(argv[1])) == 0)
+	if ((pid_serv = ft_atoi(argv[1])) == 0)
 	{
 		write(2, "Unknow PID.\n", 32);
 		return (1);
 	}
-	send_message(pid_server, argv[2]);
+	send_mess(pid_serv, argv[2]);
 	return (0);
 }
