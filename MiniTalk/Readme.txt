@@ -3,7 +3,7 @@ ft_printf [y cualquier equivalente que TÚ hayas programado]
 signal    https://man7.org/linux/man-pages/man7/signal.7.html
     sigemptyset
     sigaddset
-    sigaction
+    sigaction                                                     **bonus (estructura para tratar las. señales)
     kill
 getpid     pid_t getpid(void);                        unistd.h   getpid() returns the process ID (PID) of the calling process.
                                                                  (This is often used by routines that generate unique temporary
