@@ -13,13 +13,13 @@ UTILS_SRCS = utils.o
 
 all : $(SERVER) $(CLIENT) $(UTILS)
 
-$(CLIENT) : $(CLIENT_SRCS)
+$(CLIENT_NAME) : $(CLIENT_SRCS)
 	@$(CC) $(CLIENT_SRCS) -o $(CLIENT)
 
-$(SERVER) : $(SERVER_SRCS)
+$(SERVER_NAME) : $(SERVER_SRCS)
 	@$(CC) $(SERVER_SRCS) -o $(SERVER)
 
-$(UTILS)  : $(UTILS_SRCS)
+$(UTILS_NAME)  : $(UTILS_SRCS)
 	@$(CC) $(UTILS_SRCS) -o $(UTILS)
 
 %.o : %.c
