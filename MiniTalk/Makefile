@@ -1,38 +1,50 @@
-CC = gcc
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: xlasa-ol <xlasa-ol@student.42urduli>       +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/12/15 11:58:27 by xlasa-ol          #+#    #+#              #
+#    Updated: 2022/01/10 18:38:09 by xlasa-ol         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-CFLAGS = -Werror -Wall -Wextra
+SERVER		= server
+SERVER_SRC	= server.c
+SERVER_OBJ	= $(SERVER_SRC:.c=.o)
 
-SERVER_NAME = server
-SERVER_SRCS = server.c
+CLIENT		= client
+CLIENT_SRC	= client.c
+CLIENT_OBJ	= $(CLIENT_SRC:.c=.o)
 
-CLIENT_NAME = client
-CLIENT_SRCS = client.c
+LIBFT		= ./libft/libft.a
 
-UTILS_NAME = utils
-UTILS_SRCS = utils.c
+CC			= gcc
+CFLAGS		= -Wall -Werror -Wextra
 
-all : $(SERVER) $(CLIENT) $(UTILS)
+RM			= rm -rf
 
-$(CLIENT_NAME) : $(CLIENT_SRCS)
-	@$(CC) $(CLIENT_SRCS) -o $(CLIENT_NAME)
+all:		$(LIBFT) $(CLIENT) $(SERVER)
 
-$(SERVER_NAME) : $(SERVER_SRCS)
-	@$(CC) $(SERVER_SRCS) -o $(SERVER_NAME)
+$(CLIENT):  $(LIBFT) $(CLIENT_SRC) 
+			$(CC) $(CFLAGS) $(CLIENT_SRC) $(LIBFT) -o $(CLIENT)
+			@echo "\033[92mCliente compilado\033[0m"
 
-$(UTILS_NAME)  : $(UTILS_SRCS)
-	@$(CC) $(UTILS_SRCS) -o $(UTILS_NAME)
+$(SERVER):	$(LIBFT) $(SERVER_SRC) 
+			$(CC) $(CFLAGS) $(SERVER_SRC) $(LIBFT) -o $(SERVER)
+			@echo "\033[92mServidor compilado\033[0m"
 
-%.o : %.c
-	@$(CC) $(FLAGS) $< -c
+$(LIBFT):	libft/*.c libft/*.h
+			$(MAKE) -C libft/
 
-clean :
-	@rm -f client.o server.o
-	@printf "\e[31mclean done\e[0m\n"
+clean: 
+			make -C  libft/ clean
 
-fclean : clean
-	@rm -f $(SERVER_NAME) $(CLIENT_NAME)
-	@printf "\e[31mfclean done\e[0m\n"
+fclean:		clean
+			make -C libft/ clean
+			$(RM) $(CLIENT) $(SERVER)
 
-re : fclean all
+re:			fclean all
 
-.PHONY: all clean fclean re
+.PHONY: 	all clean fclean re

@@ -1,56 +1,56 @@
-#include <unistd.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   server.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: xlasa-ol <xlasa-ol@student.42urduli>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/15 15:30:34 by xlasa-ol          #+#    #+#             */
+/*   Updated: 2021/12/15 18:01:57 by xlasa-ol         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <signal.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "libft/libft.h"
 
-void	ft_putchar_fd(char c, int fd)
+void	signal_holder(int signal)
 {
-	write(fd, &c, 1);
-}
-
-void	interpreter(int signo)
-{
-	static size_t	i;
 	static int	bit;
-	static char	buf[100];
+	static int	i;
 
-	if (--bit == -1)
+	if (signal == SIGUSR1)
+		i |= (0x01 << bit);
+	bit++;
+	if (bit == 8)
 	{
-		bit = 6;
-		++i;
-	}
-	buf[i] &= ~(1 << 7);
-	if (signo == SIGUSR1)
-		buf[i] |= (1 << bit);
-	else if (signo == SIGUSR2)
-		buf[i] &= ~(1 << bit);
-	if (i == 99 || buf[i] == 127)
-	{
-		buf[i] = 0;
-		write(STDOUT_FILENO, buf, i + 1);
-		ft_memset(buf, '\0', 99);
-		i = 0;
+		ft_putchar_fd(i, 1);
 		bit = 0;
+		i = 0;
 	}
 }
 
 int	main(int argc, char **argv)
 {
-	pid_t pid;
+	int	pid;
 
 	(void)argv;
 	if (argc != 1)
 	{
-		write(STDERR_FILENO, "usage: ./server\n", 16);
-		return (1);
+		ft_putstr_fd("Invalid number of arguments\n", 1);
+		ft_putstr_fd("Correct format: \033[98m ./server\033[0m\n", 1);
 	}
-	else
+	pid = getpid();
+	ft_putstr_fd("This is your pid:\n ", 1);
+	ft_putnbr_fd(pid, 1);
+	ft_putstr_fd("\nWaiting for message...\n", 1);
+	while (argc == 1)
 	{
-		pid = getpid();
-		ft_putnbr_fd(pid, STDOUT_FILENO);
-		ft_putchar_fd('\n', STDOUT_FILENO);
-		while (42)
-		{
-			signal(SIGUSR1, interpreter);
-			signal(SIGUSR2, interpreter);
-		}
+		signal(SIGUSR1, signal_holder);
+		signal(SIGUSR2, signal_holder);
+		pause ();
 	}
+	return (0);
 }
