@@ -37,6 +37,21 @@ void	signal_holder(int signal)
 	}
 }
 
+void	message_received(int servpid)
+{
+	int	clientpid;
+
+	clientpid = getpid();
+	while (argc == 1)
+	{
+		signal(SIGUSR1, signal_holder);
+		signal(SIGUSR2, signal_holder);
+		pause ();
+	}
+	if (servpid == clilentpid)
+		ft_putstr_fd("\033[92mSignal correctly received by server\033[0m\n", 1);
+}
+
 int	main(int argc, char **argv)
 {
 	int	servpid;
@@ -63,19 +78,4 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	return (0);
-}
-
-void	message_received(int servpid)
-{
-	int	clientpid;
-
-	clientpid = getpid();
-	while (argc == 1)
-	{
-		signal(SIGUSR1, signal_holder);
-		signal(SIGUSR2, signal_holder);
-		pause ();
-	}
-	if (servpid == clilentpid)
-		ft_putstr_fd("\033[92mSignal correctly received by server\033[0m\n", 1);
 }
