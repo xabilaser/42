@@ -37,11 +37,8 @@ void	signal_holder(int signal)
 	}
 }
 
-void	message_received(int servpid)
+void	message_received(int servpid, int clientpid)
 {
-	int	clientpid;
-
-	clientpid = getpid();
 	while (argc == 1)
 	{
 		signal(SIGUSR1, signal_holder);
@@ -56,18 +53,16 @@ int	main(int argc, char **argv)
 {
 	int	servpid;
 	int	clientpid;
-
 	size_t	i;
 
 	i = 0;
+	clientpid = getpid();
 	if (argc == 3)
 	{
 		servpid = ft_atoi(argv[1]);
-		while (argv[2][i] != '\0')
-		{
+		while (argv[2][i++] != '\0')
 			send_signal(servpid, argv[2][i]);
-			i++;
-		}
+		send_signal(servpid, clientpid);
 		ft_putstr_fd("\033[92mSignal correctly sended\033[0m\n", 1);
 	}
 	else
@@ -77,5 +72,6 @@ int	main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 		return (1);
 	}
+	message_received(clientpid);
 	return (0);
 }
