@@ -25,13 +25,14 @@ void	signal_holder(int signal)
 {
 	static int	bit;
 	static int	i;
+	int		recpid;
 
 	if (signal == SIGUSR1)
 		i |= (0x01 << bit);
 	bit++;
 	if (bit == 8)
 	{
-		ft_putchar_fd(i, 1);
+		// ft_putchar_fd(i, 1); SACAR DE AQUÍ EL PID DEVUELTO EN LA VARIABLE RECPID PARA PASARLA A MESSAGE_RECEIVED
 		bit = 0;
 		i = 0;
 	}
@@ -45,6 +46,9 @@ void	message_received(int servpid, int clientpid)
 		signal(SIGUSR2, signal_holder);
 		pause ();
 	}
+	// RECOGER LAS SEÑALES CHAR A CHAR DENTRO DE UNA STRING
+	// HACER ATOI Y COMPARAR EN EL SIGUIENTE IF
+	
 	if (servpid == clilentpid)
 		ft_putstr_fd("\033[92mSignal correctly received by server\033[0m\n", 1);
 }
