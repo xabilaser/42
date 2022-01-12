@@ -21,9 +21,27 @@ static int	send_signal(int pidnum, char c)
 	return (0);
 }
 
+void	signal_holder(int signal)
+{
+	static int	bit;
+	static int	i;
+
+	if (signal == SIGUSR1)
+		i |= (0x01 << bit);
+	bit++;
+	if (bit == 8)
+	{
+		ft_putchar_fd(i, 1);
+		bit = 0;
+		i = 0;
+	}
+}
+
 int	main(int argc, char **argv)
 {
-	int		servpid;
+	int	servpid;
+	int	clientpid;
+
 	size_t	i;
 
 	i = 0;
@@ -45,4 +63,19 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	return (0);
+}
+
+void	message_received(int servpid)
+{
+	int	clientpid;
+
+	clientpid = getpid();
+	while (argc == 1)
+	{
+		signal(SIGUSR1, signal_holder);
+		signal(SIGUSR2, signal_holder);
+		pause ();
+	}
+	if (servpid == clilentpid)
+		ft_putstr_fd("\033[92mSignal correctly received by server\033[0m\n", 1);
 }
