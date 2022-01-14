@@ -1,25 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: xlasa-ol <xlasa-ol@student.42urduli>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/13 16:48:44 by xlasa-ol          #+#    #+#             */
+/*   Updated: 2022/01/14 19:24:03 by xlasa-ol         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <signal.h>
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "./libft/libft.h"
-
-static int	send_signal(int clientpid, char c)
-{
-	int	bit;
-
-	bit = 0;
-	while (bit < 8)
-	{
-		if ((c & (0x01 << bit)) != 0)
-			kill (clientpid, SIGUSR1);
-		else
-			kill (clientpid, SIGUSR2);
-		usleep(100);
-		bit++;
-	}
-	return (0);
-}
+#include "libft/libft.h"
 
 void	signal_holder(int signal)
 {
@@ -29,14 +24,35 @@ void	signal_holder(int signal)
 	if (signal == SIGUSR1)
 		i |= (0x01 << bit);
 	bit++;
-	// CREAR VARIABLE STRING Y SEPARAR PID (NUMEROS DEL FINAL 5?). DESPUÉS ESCRIBIR STRING (MENSAJE)
-	//¿METER CARACTER SEPARADOR PARA DIFERENCIAR Y SEPARAR CON SUBSTRING O SPLIT?
 	if (bit == 8)
 	{
 		ft_putchar_fd(i, 1);
 		bit = 0;
 		i = 0;
 	}
+}
+
+static int	send_sigserv(int pid, char c)
+{
+	int	bit;
+	while (bit < 8)
+	{
+		if ((c & (0x01 << bit)) != 0)
+		{
+			kill (pid, SIGUSR1);
+			if (kill == -1)
+				ft_putstr_fd("exit\n", 1);
+		}
+		else
+		{
+			kill (pid, SIGUSR2);
+			if (kill == -1)
+				ft_putstr_fd("exit\n", 1);
+		}
+		usleep(500);
+		bit++;
+	}
+	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -59,7 +75,5 @@ int	main(int argc, char **argv)
 		signal(SIGUSR2, signal_holder);
 		pause ();
 	}
-	// FALTA PROCESAR LA SEÑAL PARA EXTRAER EL PID DEL CLIENTE Y ENVIARLO CON SEND_SIGNAL
-	send_signal(clientpid, );
 	return (0);
 }
