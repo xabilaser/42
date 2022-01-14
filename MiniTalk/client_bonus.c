@@ -6,7 +6,7 @@
 /*   By: xlasa-ol <xlasa-ol@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 16:47:22 by xlasa-ol          #+#    #+#             */
-/*   Updated: 2022/01/13 18:02:32 by xlasa-ol         ###   ########.fr       */
+/*   Updated: 2022/01/14 19:39:24 by xlasa-ol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "libft/libft.h"
+char*	g_checker;
 
 static int	send_signal(int pidnum, char c)
 {
@@ -50,40 +51,48 @@ char	signal_holder(int signal)
 	static int	bit;
 	static int	i;
 	char		c;
+	size_t		j;
 
-	if (signal == SIGUSR1)
-		i |= (0x01 << bit);
-	bit++;
-	if (bit == 8)
+	j = 0;
+	while (g_checker[j] != '\0')
 	{
-		c = (char)i;
-		bit = 0;
-		i = 0;
+		if (signal == SIGUSR1)
+			i |= (0x01 << bit);
+			bit++;
+		if (bit == 8)
+		{
+			g_checker[j] = c;
+			bit = 0;
+			i = 0;
+		}
 	}
 	return (c);
 }
 
-int	pid_checker(int pid)
+void	pid_checker(int pid)
 {
 	char	*str;
+	size_t	i;
 
-	str = itoa(pid);
+	str = ft_itoa(pid);
+	i = 0;
 	while (str[i])
 	{
 		signal(SIGUSR1, signal_holder);
 		signal(SIGUSR2, signal_holder);
 		pause();
 	}
+	if (g_checker == str)
+		ft_putstr_fd("\033[96mMessage correctly received from server\033[om", 1);
 }
 
 int	main(int argc, char **argv)
 {
 	int		servpid;
 	int		clientpid;
-	size_t	i;
 
-	i = 0;
 	clientpid = getpid();
+	g_checker = ft_itoa(clientpid);
 	ft_putnbr_fd(clientpid);
 	if (argc == 3)
 	{
@@ -98,10 +107,8 @@ int	main(int argc, char **argv)
 	{
 		ft_putstr_fd("\033[97mUse 3 arguments including:\033[0m", 1);
 		ft_putstr_fd("\033[93m./client [PID] [String_to_send]\033[0m\n", 1);
-		exit(EXIT_FAILURE);
 		return (1);
 	}
-	if (clientpid == pid_checker(clientpid));
-		ft_putstr_fd("\033[96mMessage correctly received from server\033[om", 1);
+	pid_checker(clientpid);
 	return (0);
 }
