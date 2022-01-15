@@ -15,21 +15,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "libft/libft.h"
+char	*g_message;
 
-void	signal_holder(int signal)
+char	signal_holder(int signal)
 {
 	static int	bit;
 	static int	i;
+	char		c;
 
 	if (signal == SIGUSR1)
 		i |= (0x01 << bit);
 	bit++;
 	if (bit == 8)
 	{
-		ft_putchar_fd(i, 1);
+		c = i;
 		bit = 0;
 		i = 0;
 	}
+	return (c);
 }
 
 static int	send_sigserv(int pid, char c)
