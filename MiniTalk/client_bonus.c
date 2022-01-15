@@ -83,7 +83,7 @@ void	pid_checker(int pid)
 		signal(SIGUSR2, signal_holder);
 		pause();
 	}
-	if (g_checker == str)
+	if (!ft_strcmp(g_checker, str, ft_strlen(str))
 		ft_putstr_fd("\033[96mMessage correctly received from server\033[om", 1);
 }
 
