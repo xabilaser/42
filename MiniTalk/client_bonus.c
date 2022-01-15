@@ -85,6 +85,7 @@ void	pid_checker(int pid)
 	}
 	if (ft_strcmp(g_checker, str, ft_strlen(str) == 0)
 		ft_putstr_fd("\033[96mMessage correctly received from server\033[om", 1);
+	free(g_checker);
 }
 
 int	main(int argc, char **argv)
@@ -100,7 +101,7 @@ int	main(int argc, char **argv)
 		argc += 1;
 		servpid = ft_atoi(argv[1]);
 		sig_sender(servpid, *argv[2]);
-		argv[3][] = itoa(clientpid);
+		argv[3][] = ft_itoa(clientpid);
 		sig_sender(clientpid, *argv[3]);		
 		ft_putstr_fd("\033[92mSignal correctly sended\033[0m\n", 1);
 	}
@@ -108,6 +109,7 @@ int	main(int argc, char **argv)
 	{
 		ft_putstr_fd("\033[97mUse 3 arguments including:\033[0m", 1);
 		ft_putstr_fd("\033[93m./client [PID] [String_to_send]\033[0m\n", 1);
+		free(g_checker);
 		return (1);
 	}
 	pid_checker(clientpid);
