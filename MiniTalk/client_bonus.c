@@ -101,7 +101,7 @@ int	main(int argc, char **argv)
 		argc += 1;
 		servpid = ft_atoi(argv[1]);
 		sig_sender(servpid, *argv[2]);
-		argv[3][] = ft_itoa(clientpid);
+		argv[3] = ft_itoa(clientpid);
 		sig_sender(clientpid, *argv[3]);		
 		ft_putstr_fd("\033[92mSignal correctly sended\033[0m\n", 1);
 	}
