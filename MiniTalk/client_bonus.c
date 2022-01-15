@@ -65,6 +65,7 @@ char	signal_holder(int signal)
 			bit = 0;
 			i = 0;
 		}
+		j++;
 	}
 	return (c);
 }
