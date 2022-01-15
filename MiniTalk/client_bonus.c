@@ -96,7 +96,7 @@ int	main(int argc, char **argv)
 
 	clientpid = getpid() * 100;
 	g_checker = ft_itoa(clientpid);
-	to_send = (char*)malloc(sizeof(char) * (ft_strlen(g_checker) + ft_strlen(*argv[2]) + 1));
+	to_send = (char*)malloc(sizeof(char) * (ft_strlen(g_checker) + ft_strlen(*argv[2])));
 	to_send = ft_strtrim(g_checker, *argv[2]);
 	if (argc == 3)
 	{
