@@ -3,16 +3,19 @@ ft_printf [y cualquier equivalente que TÚ hayas programado]
 signal    https://man7.org/linux/man-pages/man7/signal.7.html
     sigemptyset
     sigaddset
-    sigaction                                                     **bonus (estructura para tratar las. señales)
+    sigaction                                                     
     kill
+sigaction                                                       **bonus (estructura para tratar las. señales)
+            struct sigaction {
+                void    (*sa_handler)(int);    //addr of signal handler, or SIG_IGN, or SIG_DFL 
+                sigset_t    sa_mask;           //additional signals to block 
+                int    sa_flags;               //signal options
+               };
+                
 getpid     pid_t getpid(void);                        unistd.h   getpid() returns the process ID (PID) of the calling process.
                                                                  (This is often used by routines that generate unique temporary
                                                                  filenames.)
-malloc     void *malloc(size_t size);                stdlib.h    The malloc() function allocates size bytes and returns a pointer
-                                                                 to the allocated memory.
-free       void free(*string);                       stdlib.h    free displays the total amount of free and used physical and swap
-                                                                 memory in the system, as well as the buffers and caches used by
-                                                                 the kernel.
+
 pause      int pause(void);                          unistd.h    pause() causes the calling process (or thread) to sleep until a
                                                                  signal is delivered that either terminates the process or causes
                                                                  the invocation of a signal-catching function.
@@ -26,6 +29,8 @@ usleep    int usleep(useconds_t usec);               unistd.h    The usleep() fu
                                                                  the call or by the granularity of system timers.
 exit      noreturn void exit(int status);            unistd.h    The exit() function causes normal process termination and the
                                                                  least significant byte of status (i.e., status & 0xFF) is
-                                                                 returned to the parent 
+No usadas:                                                                 returned to the parent 
 STDOUT_FILENO
 STDIN_FILENO
+malloc
+free
