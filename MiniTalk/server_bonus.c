@@ -14,7 +14,7 @@
 #include <unistd.h>
 #include "libft/libft.h"
 
-/* Estructura propia de la función sigaction descrita en unistd.h:
+/* Estructura propia de la función sigaction descrita en su librería (signal.h):
 
 struct sigaction {
     void    (*sa_handler)(int);    addr of signal handler, or SIG_IGN, or SIG_DFL 
