@@ -15,9 +15,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "libft/libft.h"
-char	*g_checker;
 
-static int	send_signal(int pidnum, char c)
+static int	cd_send_signal(int pidnum, char c)
 {
 	int	bit;
 
@@ -34,59 +33,49 @@ static int	send_signal(int pidnum, char c)
 	return (0);
 }
 
-void	sig_sender(char *str, pid)
+// En el cliente usamos la misma función que en el servidor, con el mismo prototipo pero diferenete mensaje.
+// Solamente necesitamos recibir la señal desde el servidor y mostramos el emnsaje.
+
+void	cd_sig_checker(int sig, siginfo_t *info, void *ucontest_t)
 {
-	size_t	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		send_signal(pid, str[i]);
-		i++;
-	}
-}
-
-char	signal_holder(int signal)
-{
-	static int	bit;
-	static int	i;
-	char		c;
-	size_t		j;
-
-	j = 0;
-	while (g_checker[j] != '\0')
-	{
-		if (signal == SIGUSR1)
-			i |= (0x01 << bit);
-			bit++;
-		if (bit == 8)
-		{
-			g_checker[j] = c;
-			bit = 0;
-			i = 0;
-		}
-		j++;
-	}
-	return (c);
+	(void)ucontest_t;
+	(void)info;
+	if (signal == SIGUSR1)
+		ft_putstr_fd("\033[96mMessage correctly received from server\033[om", 1);
+	//No estoy muy seguro de que sea necesario comprobar SIGUSR2 porque desde el servidor solo se devuelve SIGUSR1, pero por si acaso...
+	if (signal == SIGUSR2)
+		ft_putstr_fd("\033[96mMessage correctly received from server\033[om", 1);
 }
 
 int	main(int argc, char **argv)
 {
-	int	servpid;
+	struct sigaction	sig;
+	int			servpid;
+	int			x;
 
+	x = 0;
+	// se declara el handler con la función que recoge la señal
+	sig.sa_handler = (void (*)(int))cd_sig_checker;
+	// 
+	sigemptyset(&sig.sa_mask);
+	//Se identifican las señales recibidas (NULL o 0 porque no hace falta procesarlas.
+	sigaction(SIGUSR1, &sig, NULL);
+	sigaction(SIGUSR1, &sig, NULL);
 	if (argc == 3)
 	{
 		servpid = ft_atoi(*argv[1]);
-		sig_sender(servpid, to_send);	
+		while (argv[2][i] != '\0')
+		{
+			cd_send_signal(servpid, argv[2][i]);
+			i++;
+		}
 		ft_putstr_fd("\033[92mSignal correctly sended\033[0m\n", 1);
 	}
 	else
 	{
 		ft_putstr_fd("\033[97mUse 3 arguments including:\033[0m", 1);
 		ft_putstr_fd("\033[93m./client [PID] [String_to_send]\033[0m\n", 1);
-		return (1);
+		exit(EXIT_FAILURE);
 	}
-	if (//recibe la señal de sigaction)
-		ft_putstr_fd("\033[96mMessage correctly received from server\033[om", 1);
 	return (0);
 }
