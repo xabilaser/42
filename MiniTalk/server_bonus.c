@@ -15,47 +15,29 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "libft/libft.h"
-char	*g_message;
 
-char	signal_holder(int signal)
+/* Estructura de sigaction
+struct sigaction {
+    void    (*sa_handler)(int);    addr of signal handler, or SIG_IGN, or SIG_DFL 
+    sigset_t    sa_mask;           additional signals to block 
+    int    sa_flags;               signal options
+};
+*/
+
+void	sig_handler(int signal)
 {
 	static int	bit;
 	static int	i;
-	char		c;
 
 	if (signal == SIGUSR1)
 		i |= (0x01 << bit);
 	bit++;
 	if (bit == 8)
 	{
-		c = i;
+		ft_putchar_fd(i, 1);
 		bit = 0;
 		i = 0;
 	}
-	return (c);
-}
-
-static int	send_sigserv(int pid, char c)
-{
-	int	bit;
-	while (bit < 8)
-	{
-		if ((c & (0x01 << bit)) != 0)
-		{
-			kill (pid, SIGUSR1);
-			if (kill == -1)
-				ft_putstr_fd("exit\n", 1);
-		}
-		else
-		{
-			kill (pid, SIGUSR2);
-			if (kill == -1)
-				ft_putstr_fd("exit\n", 1);
-		}
-		usleep(500);
-		bit++;
-	}
-	return (0);
 }
 
 int	main(int argc, char **argv)
