@@ -24,7 +24,7 @@ struct sigaction {
 };
 */
 
-void	sig_handler(int signal)
+void	cd_sig_handler(int signal)
 {
 	static int	bit;
 	static int	i;
@@ -42,19 +42,24 @@ void	sig_handler(int signal)
 
 int	main(int argc, char **argv)
 {
-	int	pid;
+	struct sigaction	sig;
+	int			pid;
 
 	(void)argv;
 	if (argc != 1)
 	{
 		ft_putstr_fd("Invalid number of arguments\n", 1);
 		ft_putstr_fd("Correct format: \033[98m ./server\033[0m\n", 1);
+		return (1);
 	}
 	pid = getpid();
 	ft_putstr_fd("This is your pid:\n ", 1);
 	ft_putnbr_fd(pid, 1);
 	ft_putstr_fd("\nWaiting for message...\n", 1);
-	while (argc == 1)
+	sig.sa_handler = (void(*)(int))cd_sig_handler;
+	sigemptyset(&sig.sa_mask);
+	sig.sa_flags = 0;
+		while (argc == 1)
 	{
 		signal(SIGUSR1, signal_holder);
 		signal(SIGUSR2, signal_holder);
