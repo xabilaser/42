@@ -16,19 +16,26 @@
 #include <stdlib.h>
 #include "libft/libft.h"
 
-/* Estructura de sigaction
+/* Estructura propia de la función sigaction:
+
 struct sigaction {
     void    (*sa_handler)(int);    addr of signal handler, or SIG_IGN, or SIG_DFL 
     sigset_t    sa_mask;           additional signals to block 
     int    sa_flags;               signal options
 };
+
 */
 
-void	cd_sig_handler(int signal)
+// Según el man de sigaction, el handler tiene que tener el siguiente prototipo:
+
+void	cd_sig_handler(int signal, siginfo_t *info, void *ucontest_t)
 {
 	static int	bit;
 	static int	i;
 
+	//como solo necesitamos el tipo de variable, las vaciamos por si tuvieran contenido de algún otro proceso:
+	(void)ucontest_t;
+	(void)info;
 	if (signal == SIGUSR1)
 		i |= (0x01 << bit);
 	bit++;
@@ -38,10 +45,13 @@ void	cd_sig_handler(int signal)
 		bit = 0;
 		i = 0;
 	}
+	// enviar la señal al emisor del mensaje utilizando su pid (si_pid).
+	kill(info->si_pid, SIGUSR1);
 }
 
 int	main(int argc, char **argv)
 {
+	//Declaramos la estructura de la función sigaction que está comentada arriba
 	struct sigaction	sig;
 	int			pid;
 
@@ -56,8 +66,11 @@ int	main(int argc, char **argv)
 	ft_putstr_fd("This is your pid:\n ", 1);
 	ft_putnbr_fd(pid, 1);
 	ft_putstr_fd("\nWaiting for message...\n", 1);
+	//Enviamos la subrutina handler a la función que recoge la señal:
 	sig.sa_handler = (void(*)(int))cd_sig_handler;
+	//se inicializa la máscara de la señal hacia el puntero de la máscara de sigaction:
 	sigemptyset(&sig.sa_mask);
+	//No hay flags para sigaction (no son necesarios):
 	sig.sa_flags = 0;
 		while (argc == 1)
 	{
