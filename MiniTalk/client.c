@@ -12,8 +12,6 @@
 
 #include <signal.h>
 #include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include "libft/libft.h"
 
 static int	send_signal(int pidnum, char c)
