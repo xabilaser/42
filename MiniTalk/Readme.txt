@@ -5,7 +5,8 @@ signal    https://man7.org/linux/man-pages/man7/signal.7.html
     sigaddset
     sigaction                                                     
     kill
-sigaction                                                       **bonus (estructura para tratar las. señales)
+sigaction                                                       **bonus (estructura para tratar las. señales. En este caso, devuelve
+                                                                 SIGUSR1, una unica señal para que el cliente muestre un recibido/ok).
             struct sigaction {
                 void    (*sa_handler)(int);    //addr of signal handler, or SIG_IGN, or SIG_DFL 
                 sigset_t    sa_mask;           //additional signals to block 
