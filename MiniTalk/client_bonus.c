@@ -70,34 +70,10 @@ char	signal_holder(int signal)
 	return (c);
 }
 
-void	pid_checker(int pid)
-{
-	char	*str;
-	size_t	i;
-
-	str = ft_itoa(pid);
-	i = 0;
-	while (str[i])
-	{
-		signal(SIGUSR1, signal_holder);
-		signal(SIGUSR2, signal_holder);
-		pause();
-	}
-	if (ft_strcmp(g_checker, str, ft_strlen(str) == 0)
-		ft_putstr_fd("\033[96mMessage correctly received from server\033[om", 1);
-	free(g_checker);
-}
-
 int	main(int argc, char **argv)
 {
 	int	servpid;
-	int	clientpid;
-	char	*to_send;
 
-	clientpid = getpid() * 100;
-	g_checker = ft_itoa(clientpid);
-	to_send = (char*)malloc(sizeof(char) * (ft_strlen(g_checker) + ft_strlen(*argv[2])));
-	to_send = ft_strtrim(g_checker, *argv[2]);
 	if (argc == 3)
 	{
 		servpid = ft_atoi(*argv[1]);
@@ -108,11 +84,9 @@ int	main(int argc, char **argv)
 	{
 		ft_putstr_fd("\033[97mUse 3 arguments including:\033[0m", 1);
 		ft_putstr_fd("\033[93m./client [PID] [String_to_send]\033[0m\n", 1);
-		free(g_checker);
-		free(to_send);
 		return (1);
 	}
-	free(to_send);
-	pid_checker(clientpid);
+	if (//recibe la señal de sigaction)
+		ft_putstr_fd("\033[96mMessage correctly received from server\033[om", 1);
 	return (0);
 }
