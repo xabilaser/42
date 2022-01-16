@@ -11,6 +11,8 @@ sigaction                                                       **bonus (estruct
                 void    (*sa_handler)(int);    //addr of signal handler, or SIG_IGN, or SIG_DFL 
                 sigset_t    sa_mask;           //additional signals to block 
                 int    sa_flags;               //signal options
+                            /* alternate handler */
+                void    (*sa_sigaction)(int, siginfo_t *, void *);
                };
                 
 getpid     pid_t getpid(void);                        unistd.h   getpid() returns the process ID (PID) of the calling process.
