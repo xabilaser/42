@@ -47,3 +47,19 @@ int	main(int argc, char **argv)
 	write(1, "\n", 1);
 	return (0);
 }
+/*
+Pseudocódigo:
+Función checkeo. Recibe una cadena, un char y una longitud en entero.
+-	Variables: un contador
+-	Bucle para recorrer la cadena hasta la posición dada
+o	Si el carácter de la cadena es igual al carácter, se sale de la función y devuelve 1.
+-Si sale del bucle devuelve 0.
+Función main con número de argumentos y array de argumentos.
+-	Variables: dos contadores
+-	Se comprueba que entran los tres argumentos (programa y dos cadenas)
+o	Se recorre el segundo string para poner su contador al tamaño de la longitud.
+o	Se recorre el primer string  con el primer contador
+	Se comprueba si cada carácter del primer String no se repite su string. Si  no se repite, se imprime.
+o	Se reinicia el primer contador a cero y se recorre el segundo string con él.
+	Se comprueba que cada carácter del segundo String no se repite en el primero hasta la longitud del segundo contador y que el mismo carácter no se repite en su string hasta el char anterior. Si no se repite en ninguno de los dos, se imprime.
+-	Se imprime el salto de línea y se abandona el programa con return (0). */
