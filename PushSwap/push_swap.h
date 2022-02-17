@@ -6,7 +6,7 @@
 /*   By: xlasa-ol <xlasa-ol@student.42urduli>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 18:19:07 by xlasa-ol          #+#    #+#             */
-/*   Updated: 2021/12/14 18:53:51 by xlasa-ol         ###   ########.fr       */
+/*   Updated: 2022/02/17 14:49:56 by xlasa-ol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,9 @@ typedef struct s_list
 }	t_list;
 
 int	main(int argc, char **argv);
+int	search_sz(char *str, size_t i);
+int 	rec_stack(char *str, int *stack);
+int 	cd_noargs(int num);
+int 	chk_stckerrors(int *stack);
 
 #endif
