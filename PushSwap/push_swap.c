@@ -79,3 +79,49 @@ int	main(int argc, char **argv)
 	else if (argc == 2)
 	{
 		if (argv[1])
+		j++;
+		i++;
+	}
+	return (j);
+}
+
+int	rec_stack(char	*str, int *stack)
+{
+	size_t	i;
+	size_t	j;
+	size_t	k;
+	char	*num;
+
+	i = 0;
+	j = 0;
+	k = 0;
+	while (str[i])
+	{
+		if (str[i] > 47 && str[i] < 58)
+		{
+			num = malloc(sizeof(char) * search_sz(str, i) + 1);
+			while (str[i] > 47 && str[i] < 58)
+				num[j++] = str[i++];
+			stack[k] = ft_atoi(num);
+			free(*num);
+			k++;
+		}
+		else
+		{
+			j = 0;
+			i++;
+		}
+	return (*stack);
+}
+
+int	main(int argc, char **argv)
+{
+	int	i;
+	int	*fst_stack;
+
+	i = 0;
+	if (argc < 2)
+		return (cd_noargs(argc)); // error de less arguments. Pasa el int de args
+	else if (argc == 2)
+	{
+		if (argv[1])
