@@ -62,17 +62,21 @@ int	*rec_stack(char	*str, int *stack, int i)
 
 int	main(int argc, char **argv)
 {
-	int	*num_stack;
+	int		**num_stack;
+	size_t	moves;
 
 	if (argc != 2)
 		return (cd_noargs(argc)); 
 	else if (argc == 2)
 	{
-        num_stack = malloc(sizeof(int) * arr_length(*argv[1]));
+        num_stack = malloc(sizeof(int) * 2 * stack_size(*argv[1]));
         if (rec_stack(*argv[1], num_stack, 0))
             rec_stack(*argv[1], num_stack, 0);
         else
-            return (stack_error(num_stack));
+            return (stack_error());
     }
-    return ;
+	stack_order(**num_stack); //se ordena la pila y los índices heredan el desorden
+	moves = main_game(num_stack[0]);
+	show_results(moves);
+	return ;
 }
