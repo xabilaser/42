@@ -14,6 +14,9 @@ NAME	= push_swap.a
 
 SRCS	= push_swap.h\
 		  push_swap_utils.c\
+		  ps_actions.c\
+		  ps_errors.c\
+		  push_swap.c
 
 OBJS	= $(SRCS:.c=.o)
 
