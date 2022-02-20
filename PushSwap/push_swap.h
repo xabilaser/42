@@ -23,10 +23,16 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
-int	main(int argc, char **argv);
-int	search_sz(char *str, size_t i);
-int 	rec_stack(char *str, int *stack);
-int 	cd_noargs(int num);
-int 	chk_stckerrors(int *stack);
+int     main(int argc, char **argv);
+int	    number_sz(char *str, size_t i);
+int     *rec_stack(char *str, int *stack);
+int     cd_noargs(int num);
+void	chk_numerrors(char *str, int num);
+void    stack_error(void);
+int     stack_size(int *stack);
+int     stack_indexer(int *stack);
+int     order_checker(int *stack);
+int     replace_i(int *stack, size_t j, size_t i);
+int     stack_order(int **stack);
 
 #endif
