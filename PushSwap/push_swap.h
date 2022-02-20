@@ -24,7 +24,7 @@ typedef struct s_list
 }	t_list;
 
 int     main(int argc, char **argv);
-int	    number_sz(char *str, size_t i);
+int	number_sz(char *str, size_t i);
 int     *rec_stack(char *str, int *stack);
 int     cd_noargs(int num);
 void	chk_numerrors(char *str, int num);
