@@ -12,4 +12,19 @@
 
 #include "push_swap.h"
 
+int show_results(int moves)
+{
+    
+}
 
+int main_game(int *numbers)
+{
+    int     *stack_a;
+    int     *stack_b;
+    float   average;
+
+    while (!order_checker(numbers))
+    {
+        average = stack_size(numbers) / 2;
+    
+}
