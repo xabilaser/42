@@ -37,11 +37,11 @@ void	chk_numerrors(char *str, int num)
 	else
 	{
 		write (1, "Error", 5);
-		return (0);
+		exit;
 	}
 }
 
-void    stack_error(VOID)
+void    stack_error(void)
 {
     write (1, "Error", 5);
     exit;
