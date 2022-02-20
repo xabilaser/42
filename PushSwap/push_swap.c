@@ -12,25 +12,18 @@
 
 #include "push_swap.h"
 
-// main con va_list
-
-int	main(int argc, char **argv)
-{
-	t_list	stack_a;
-	t_list	stack_b;
-
-	if (argc < 2)
-		return (NULL);
-	stack_a = NULL;
-	stack_b = NULL;
-	
-}
-
-int	search_sz(char *str, size_t i)
+int	number_sz(char *str, size_t i)
 {
 	int j;
 
-	j = 0;
+    j = 0;
+    if (str[i] == '-')
+    {
+        i++;
+        j++;
+    } 
+    if (!(str[i] > 47 && str[i] < 58))
+        return (0);
 	while (str[i] > 47 && str[i] < 58)
 	{
 		j++;
@@ -39,21 +32,19 @@ int	search_sz(char *str, size_t i)
 	return (j);
 }
 
-int	rec_stack(char	*str, int *stack)
+int	*rec_stack(char	*str, int *stack, int i)
 {
-	size_t	i;
 	size_t	j;
 	size_t	k;
 	char	*num;
 
-	i = 0;
 	j = 0;
 	k = 0;
 	while (str[i])
 	{
-		if (str[i] > 47 && str[i] < 58)
+		if ((str[i] > 47 && str[i] < 58) || str[i] == '-')
 		{
-			num = malloc(sizeof(char) * search_sz(str, i) + 1);
+			num = malloc(sizeof(char) * number_sz(str, i) + 1);
 			while (str[i] > 47 && str[i] < 58)
 				num[j++] = str[i++];
 			stack[k] = ft_atoi(num);
@@ -65,63 +56,23 @@ int	rec_stack(char	*str, int *stack)
 			j = 0;
 			i++;
 		}
+    }
 	return (*stack);
 }
 
 int	main(int argc, char **argv)
 {
-	int	i;
-	int	*fst_stack;
+	int	*num_stack;
 
-	i = 0;
-	if (argc < 2)
-		return (cd_noargs(argc)); // error de less arguments. Pasa el int de args
+	if (argc != 2)
+		return (cd_noargs(argc)); 
 	else if (argc == 2)
 	{
-		if (argv[1])
-		j++;
-		i++;
-	}
-	return (j);
+        num_stack = malloc(sizeof(int) * arr_length(*argv[1]));
+        if (rec_stack(*argv[1], num_stack, 0))
+            rec_stack(*argv[1], num_stack, 0);
+        else
+            return (stack_error(num_stack));
+    }
+    return ;
 }
-
-int	rec_stack(char	*str, int *stack)
-{
-	size_t	i;
-	size_t	j;
-	size_t	k;
-	char	*num;
-
-	i = 0;
-	j = 0;
-	k = 0;
-	while (str[i])
-	{
-		if (str[i] > 47 && str[i] < 58)
-		{
-			num = malloc(sizeof(char) * search_sz(str, i) + 1);
-			while (str[i] > 47 && str[i] < 58)
-				num[j++] = str[i++];
-			stack[k] = ft_atoi(num);
-			free(*num);
-			k++;
-		}
-		else
-		{
-			j = 0;
-			i++;
-		}
-	return (*stack);
-}
-
-int	main(int argc, char **argv)
-{
-	int	i;
-	int	*fst_stack;
-
-	i = 0;
-	if (argc < 2)
-		return (cd_noargs(argc)); // error de less arguments. Pasa el int de args
-	else if (argc == 2)
-	{
-		if (argv[1])
