@@ -10,6 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
+
+// error de cantidad de argumentos
+
 int	cd_noargs(int num)
 {
 	if (num == 1)
@@ -35,4 +39,10 @@ void	chk_numerrors(char *str, int num)
 		write (1, "Error", 5);
 		return (0);
 	}
+}
+
+void    stack_error(VOID)
+{
+    write (1, "Error", 5);
+    exit;
 }
