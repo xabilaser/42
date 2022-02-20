@@ -10,20 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-// error de 0 y 1 argumentos
-
 int	cd_noargs(int num)
 {
-	if (num == 0)
+	if (num == 1)
 	{
 		write(1, "No arguments. Ensure your keyboard knowlegment", 46);
 		return(0);
 	} 
-	else if (num == 1)
+	else if (num > 2)
 	{
-		write(1, "No arguments for play. Try again", 31);
+		write(1, "More enough arguments than needed. Try again.", 31);
 		return (0);
 	}
 }
