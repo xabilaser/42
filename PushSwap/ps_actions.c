@@ -1,3 +1,4 @@
+
 #include "push_swap.h"
 
 int stack_size(int *stack)
@@ -10,11 +11,10 @@ int stack_size(int *stack)
     return (i);
 }
 
-int stack_indexer(int *stack)
+int **stack_indexer(int *stack)
 {
     int     **i_stack;
     int     n;
-    size_t  i;
 
     n = 0;
     i_stack = malloc(sizeof(int) * 2 * (stack_size(stack)));
@@ -24,8 +24,7 @@ int stack_indexer(int *stack)
         i_stack[1][n] = stack[n];
         n++;
     }
-    i = 0;
-
+    return (i_stack);
 }
 
 int order_checker(int *stack)
@@ -59,7 +58,6 @@ int **replace_i(int **stack, size_t j, size_t i)
     {
         stack[1][i] = stack[1][i - 1];
         stack[0][i] = stack[0][i - 1];
-
         i++;
     }
     stack[1][j] = aux;
